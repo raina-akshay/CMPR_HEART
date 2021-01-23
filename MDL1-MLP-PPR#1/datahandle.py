@@ -1,6 +1,7 @@
 def datasetpartition(part=0,n=0.2,k=0):
     import pandas as pd
     from sklearn.model_selection import train_test_split as tts
+    from sklearn.model_selection import KFold
     import os
     from pathlib import Path
     try:
@@ -23,7 +24,11 @@ def datasetpartition(part=0,n=0.2,k=0):
         if bool(part)==0:
             print('YOU DID NOT MENTION THE PARTITIONING RATIO AND ASKED ME TO NOT USE K- FOLD CV. PLEASE RECONSIDER YOUR CHOICES')
         elif bool(part)==1: 
-            print('edit the k- fold validation expressions here')
+            kf = KFold(n_splits=k, shuffle=True, random_state=0)
+            for train_index, test_index in kf.split(X):
+                X_train, X_test = X[train_index], X[test_index]
+                y_train, y_test = y[train_index], y[test_index]
+            return (X_train, X_test, y_train, y_test)
         else:
             print("PLEASE RECHEK YOUR INPUT ARGUMENTS. I COULD NOT GET THEM!")
     
