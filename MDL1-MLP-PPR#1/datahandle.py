@@ -34,6 +34,7 @@ def datasetpartition(part,n=0.2,k=10):
                 y_train, y_test = y[train_index], y[test_index]
             print('NOW IMPLEMENTING {}- FOLD'.format(k))
             return X_train, X_test, y_train, y_test
+    #         return pd.DataFrame(X_train), pd.DataFrame(X_test), pd.DataFrame(y_train), pd.DataFrame(y_test)
         else:
             print(temp) #tells the user that the type of input for argument 'part' is invalid
  
@@ -42,10 +43,5 @@ def datasetpartition(part,n=0.2,k=10):
         p = Path(os.getcwd())
         os.chdir(str(p.parent) + '\MDL1-MLP-PPR#1')
         print('NOW PARTITIONING THE DATASET USING n=', n)
-        return pd.DataFrame(X_train), pd.DataFrame(X_test),pd.DataFrame(y_train),pd.DataFrame(y_test)
-
-
-
-
-
-
+        return X_train, X_test, y_train, y_test
+        #return pd.DataFrame(X_train), pd.DataFrame(X_test),pd.DataFrame(y_train),pd.DataFrame(y_test)
