@@ -20,9 +20,9 @@ def datasetpartition(part,n=0.2,k=10):
         print('dataset not found. Now changing cwd to search for it. will return back here if found in datasets folder')
         p = Path(os.getcwd())
         os.chdir(str(p.parent) + '\datasets')
-        df=pd.read_csv("cleveland.csv")
-        X = df.iloc[:, :-1].values
-        y = df.iloc[:, -1].values
+    df=pd.read_csv("cleveland.csv")
+    X = df.iloc[:, :-1].values
+    y = df.iloc[:, -1].values
     
     #Now as per the input arguments, split the dataset
     try: #executes only when part is not set as one of ['false','False','0','FALSE']
@@ -33,15 +33,13 @@ def datasetpartition(part,n=0.2,k=10):
                 X_train, X_test = X[train_index], X[test_index]
                 y_train, y_test = y[train_index], y[test_index]
             print('NOW IMPLEMENTING {}- FOLD'.format(k))
-            return X_train, X_test, y_train, y_test
-    #         return pd.DataFrame(X_train), pd.DataFrame(X_test), pd.DataFrame(y_train), pd.DataFrame(y_test)
         else:
             print(temp) #tells the user that the type of input for argument 'part' is invalid
  
     except: #executes only when the argument, 'part' is set as one of ['false','False','0','FALSE']
         X_train, X_test, y_train, y_test = tts(X,y,test_size=n,random_state=0)
+        print('NOW PARTITIONING THE DATASET USING n=', n)
+    finally:
         p = Path(os.getcwd())
         os.chdir(str(p.parent) + '\MDL1-MLP-PPR#1')
-        print('NOW PARTITIONING THE DATASET USING n=', n)
         return X_train, X_test, y_train, y_test
-        #return pd.DataFrame(X_train), pd.DataFrame(X_test),pd.DataFrame(y_train),pd.DataFrame(y_test)
