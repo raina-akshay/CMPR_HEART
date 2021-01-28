@@ -29,7 +29,7 @@ def datasetpartition(part,m=0.2,f=10):
             from sklearn.model_selection import KFold
             kf = KFold(n_splits=f, shuffle=True, random_state=3)
             print('NOW IMPLEMENTING {}- FOLD'.format(f))
-            return kf.split(X)
+            return X,y,kf.split(X)
         else:
             print(temp) #tells the user that the type of input for argument 'part' is invalid
  
