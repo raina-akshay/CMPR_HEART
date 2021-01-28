@@ -1,4 +1,4 @@
-def traintest(kf, n=0.2, k=10):
+def traintest(kf, n, k):
     from sklearn.neural_network import MLPClassifier as mlp
     from datahandle import datasetpartition as dsp
     try: 
