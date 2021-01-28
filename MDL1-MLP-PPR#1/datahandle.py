@@ -6,10 +6,8 @@ def boolean(a):
     else:
         return '''THE ARGUMENT FOR'PART' IS NOT OF TYPE BOOLEAN. PLEASE RECHECK!''' 
 
-def datasetpartition(part,n=0.2,k=10):
+def datasetpartition(part,m=0.2,f=10):
     import pandas as pd
-    from sklearn.model_selection import train_test_split as tts
-    from sklearn.model_selection import KFold
     import os
     from pathlib import Path
     
@@ -28,18 +26,18 @@ def datasetpartition(part,n=0.2,k=10):
     try: #executes only when part is not set as one of ['false','False','0','FALSE']
         temp= boolean(part)
         if temp ==1:
-            kf = KFold(n_splits=k, shuffle=True, random_state=0)
-            for train_index, test_index in kf.split(X):
-                X_train, X_test = X[train_index], X[test_index]
-                y_train, y_test = y[train_index], y[test_index]
-            print('NOW IMPLEMENTING {}- FOLD'.format(k))
+            from sklearn.model_selection import KFold
+            kf = KFold(n_splits=f, shuffle=True, random_state=3)
+            print('NOW IMPLEMENTING {}- FOLD'.format(f))
+            return kf.split(X)
         else:
             print(temp) #tells the user that the type of input for argument 'part' is invalid
  
     except: #executes only when the argument, 'part' is set as one of ['false','False','0','FALSE']
-        X_train, X_test, y_train, y_test = tts(X,y,test_size=n,random_state=0)
-        print('NOW PARTITIONING THE DATASET USING n=', n)
+        from sklearn.model_selection import train_test_split as tts
+        X_train, X_test, y_train, y_test = tts(X,y,test_size=m,random_state=0)
+        print('NOW PARTITIONING THE DATASET USING n=', m)
+        return X_train, X_test, y_train, y_test
     finally:
         p = Path(os.getcwd())
         os.chdir(str(p.parent) + '\MDL1-MLP-PPR#1')
-        return X_train, X_test, y_train, y_test
