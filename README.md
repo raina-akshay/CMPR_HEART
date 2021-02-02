@@ -9,7 +9,7 @@ To reuse the code file/s or visual resources, please cite us at-
 * Raina A., Sumbria S. Comparative Analysis of various Research proposals at the task of Heart Disease Prediction \[Internet]\. Projects on Machine Learning and Deep Learning. 2021 [cited 2 February 2021]. Available from: https://akshayraina.in/projects/Heart-Disease-Prediction
 
 Index-
-1. [*Details of the Papers/ Articles Implemented*](#details_of_the_papers/_articles_implemented)
+1. [*Details of the Papers/ Articles Implemented*](##details_of_the_papers/_articles_implemented)
 2. xxxxxxx
 
 ## Details of the Papers/ Articles Implemented:
