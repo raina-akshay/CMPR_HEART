@@ -97,3 +97,12 @@ plt.title("Heart Disease in function of Age and Serum Cholestoral(mg/dl)",fontsi
 plt.xlabel("Age", fontsize=14)
 plt.ylabel("Serum Cholestoral(mg/dl)", fontsize=14)
 plt.legend(["Disease", "No Disease"],fontsize=18);
+
+#Plot12(Scatter Plot(Age Vs Resting Blood Pressure))
+plt.figure(figsize=(15, 10))
+plt.scatter(dataframe.age[dataframe.target==1],dataframe.trestbps[dataframe.target==1],c="red",s=75)
+plt.scatter(dataframe.age[dataframe.target==0],dataframe.trestbps[dataframe.target==0],c="green",alpha=0.5)
+plt.title("Heart Disease in function of Age and Resting Blood Pressure",fontsize=14)
+plt.xlabel("Age", fontsize=14)
+plt.ylabel("Resting Blood Pressure", fontsize=14)
+plt.legend(["Disease", "No Disease"],fontsize=18);
