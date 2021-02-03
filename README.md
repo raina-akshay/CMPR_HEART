@@ -3,7 +3,8 @@
 This is a Python- based implementation of various (at least 10) Research Studies/ Articles/ proposals already published on the task of heart disease prediction using Machine Learning and accomplishment the same results.
 The contributors to this project are:
 1. [Akshay Raina](https://github.com/raina-akshay "Github")
-2. [Shubam Sumbria](https://github.com/shubamsumbria "Github")
+2. [Shubam Sumbria](https://github.com/shubamsumbria66 "Github")
+3. [Vishal](https://github.com/vishal0136 "Github")
 
 To reuse the code file/s or visual resources, please cite us at-
 * Raina A., Sumbria S. Comparative Analysis of various Research proposals at the task of Heart Disease Prediction \[Internet]\. Projects on Machine Learning and Deep Learning. 2021 [cited 2 February 2021]. Available from: https://akshayraina.in/projects/Heart-Disease-Prediction
