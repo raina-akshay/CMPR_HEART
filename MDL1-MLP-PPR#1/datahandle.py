@@ -13,7 +13,7 @@ def datasetpartition(part,m=0.2,f=10):
     
    #Now search for the dataset and read the x_values in X and y_values in Y 
     if os.path.exists("cleveland.csv"):
-        print('dataset_found')
+        print('dataset found')
     else:
         print('dataset not found. Now changing cwd to search for it. will return back here if found in datasets folder')
         p = Path(os.getcwd())
