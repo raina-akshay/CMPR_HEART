@@ -9,7 +9,6 @@ df.isnull().sum()
 
 #sort dataframe rows wrt the feature: age
 sort_by_age=df.sort_values(by=['age'])
-
 #Plot1(Age Vs Cholestrol)
 plt.plot(sort_by_age['age'],sort_by_age['chol'], 'g:',linewidth=1, markersize=10)
 plt.xlabel('Age');  plt.ylabel('Cholestrol')
@@ -24,7 +23,6 @@ plt.show()
 sb.catplot(kind = 'bar', data = df, y = 'age', x = 'sex', hue = 'target')
 plt.title('Distribution of age vs sex with the target class')
 plt.show()
-df['sex'] = df.sex.map({'female': 0, 'male': 1})
 
 #ANALYSING VARIOUS STATISTICAL MEASURES OF FEATURES AND INTRA- FEATURES; [Mean, Std, Min, Max etc.]
 pd.set_option("display.float", "{:.2f}".format)
