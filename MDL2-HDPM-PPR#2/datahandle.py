@@ -29,10 +29,10 @@ def convert_data():
             #writing into the csv file
             with open(DATASET_FINAL_FILE_PATH, 'w', newline='') as writeFile:
                 writer = csv.writer(writeFile)
-                writer.writerow(['age', 'sex', 'chest_pain', 'blood_press', 
-                                 'serum_chol', 'blood_sugar', 'electrocard', 
-                                 'max_heart_rate', 'induced_ang', 'oldpeak', 
-                                 'peak_st_seg', 'major_ves', 'thal', 'presence'])
+                writer.writerow(['age', 'sex', 'cp', 'trestbps', 
+                                 'chol', 'fbs', 'restecg', 
+                                 'thalach', 'exang', 'oldpeak', 
+                                 'slope', 'ca', 'thal', 'presence'])
                 for r in new_data:
                     writer.writerow(r)
         else:
