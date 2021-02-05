@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sb
 
@@ -39,8 +40,10 @@ plt.show()
 
 #Plot5(Correlation Matirx Heatmap)
 corr_matrix = df.corr()
+mask = np.zeros_like(corr_matrix, dtype = np.bool)
+mask[np.triu_indices_from(corr_matrix)] = True
 fig, ax = plt.subplots(figsize=(22, 10))
-ax = sb.heatmap(corr_matrix,annot=True,linewidths=0.5,fmt=".2f",cmap="YlGn");
+ax = sb.heatmap(corr_matrix,mask=mask,annot=True,linewidths=0.5,fmt=".2f",cmap="YlGn");
 bottom, top = ax.get_ylim()
 ax.set_ylim(bottom + 0.5, top - 0.5);
 
