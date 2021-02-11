@@ -1,3 +1,50 @@
+def convert_data(): #searches for data, convertes it if not in csv format and then returns a DF
+    import os
+    from pathlib import Path
+    import pandas as pd
+    if os.path.exists("cleveland.csv"):
+        print('dataset found in current directory')
+        return pd.read_csv('cleveland.csv')
+    else:
+        print('dataset not found. Now changing cwd to search for it. will return back here if found in datasets folder')
+        p = Path(os.getcwd())
+        os.chdir(str(p.parent) + '\datasets')
+        if os.path.exists("cleveland.csv"):
+            print('dataset found in /datasets sub- directory')
+            return pd.read_csv('cleveland.csv')
+        elif os.path.exists('cleveland.dat'):
+            import csv
+            data_fldr = os.getcwd()
+            new_file = 'cleveland.csv'
+            DATASET_FINAL_FILE_PATH = os.path.join(data_fldr, new_file)
+            with open('cleveland.dat', 'r') as f:
+                data = f.readlines()
+            #Change the delimeter from ' ' to ','
+            for i, r in enumerate(data):
+                data[i] = data[i].replace(' ', ',')
+            #Make more clear
+            new_data = []
+            for i, r in enumerate(data):
+                row = data[i].split(',')
+                row[-1] = row[-1][0]
+                new_data.append(row)
+            #writing into the csv file
+            with open(DATASET_FINAL_FILE_PATH, 'w', newline='') as writeFile:
+                writer = csv.writer(writeFile)
+                writer.writerow(['age', 'sex', 'cp', 'trestbps', 
+                                 'chol', 'fbs', 'restecg', 
+                                 'thalach', 'exang', 'oldpeak', 
+                                 'slope', 'ca', 'thal', 'presence'])
+                for r in new_data:
+                    writer.writerow(r)
+            return pd.read_csv('cleveland.csv')
+        else:
+            print('There is no file corresponding to the Statlog dataset, be it in .csv or .dat format')
+        p = Path(os.getcwd())
+        os.chdir(str(p.parent) + '\MDL1-MLP-PPR#1')
+        
+        
+
 def boolean(a):
     if str(a) in ['true','True','1','TRUE']:
         return 1
