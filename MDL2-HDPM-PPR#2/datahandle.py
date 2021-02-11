@@ -49,11 +49,12 @@ def fs():
     import pandas as pd
     data=convert_data(); X=data.iloc[:,0:13]; y=data.iloc[:,13]
     imp=mic(X,y)
-    feat_imp=pd.Series(imp)
-    feat_imp.plot(kind='barh',color='teal')
-    plt.show()
-    return data
+    mut_info=pd.Series(imp); mut_info.index=X.columns; mut_info.sort_values(ascending=False)
+    # mut_info.plot(kind='barh',color='teal')
+    # plt.show()
+    mut_info.sort_values(ascending=False).plot.bar(figsize=(20, 8))
+    return data, mut_info
 
-fs()
+data, info=fs()
 #in case of ':' indexing, second digit isnt included...but in case of it as single number, it is the number it is, i.e. if the number is 'n' u get the col no. 'n+1'
     
