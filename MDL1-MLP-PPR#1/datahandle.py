@@ -1,6 +1,6 @@
 import pandas as pd
 
-class handle_data():
+class handle_data:
     def __init__(self,filename='cleveland',col_names=None):
         self.data = filename + '.csv'
         self.df = None
@@ -68,22 +68,20 @@ class handle_data():
         X = self.df.iloc[:, :-1].values
         y = self.df.iloc[:, -1].values
         #Now as per the input arguments, split the dataset
-        if str(part) in ['true','True','1','TRUE']:#executes only when part is set as one of ['true','True','1','TRUE']
+        if part is True:
             from sklearn.model_selection import KFold
             kf=KFold(n_splits=f, shuffle=True, random_state=3)
             print('NOW IMPLEMENTING {}- FOLD'.format(f))
             return X,y,kf.split(X)
-        elif str(part) in ['false','False','0','FALSE']:#executes only when the argument, 'part' is set as one of ['false','False','0','FALSE']
+        elif part is False:
             from sklearn.model_selection import train_test_split as tts
             X_train, X_test, y_train, y_test = tts(X,y,test_size=m,random_state=0)
             print('NOW PARTITIONING THE DATASET USING n=', m)
             return X_train, X_test, y_train, y_test
-        else:
-            print('''THE ARGUMENT FOR'PART' IS NOT OF TYPE BOOLEAN. PLEASE RECHECK!''' )
 
 
 if __name__ == '__main__':
     dat=handle_data('cleveland')
     dat.read_data()
-    dat.partition(part=False)
+    dat.partition(part=True)
 #    save X,y,kfsplit
