@@ -53,8 +53,46 @@ def fs():
     # mut_info.plot(kind='barh',color='teal')
     # plt.show()
     mut_info.sort_values(ascending=False).plot.bar(figsize=(20, 8))
+    mut_info.plot(kind='barh',color='teal')
+    plt.show()
     return data, mut_info
 
 data, info=fs()
 #in case of ':' indexing, second digit isnt included...but in case of it as single number, it is the number it is, i.e. if the number is 'n' u get the col no. 'n+1'
-    
+
+#DBSCAN
+X=data[['age','thalach']].iloc[:,:].values
+from sklearn.cluster import DBSCAN
+dbscan = DBSCAN(eps=8,min_samples=5,)
+model = dbscan.fit(X)
+labels=model.labels_
+#identifying the points which makes up our core points
+import numpy as np
+sample_cores=np.zeros_like(labels,dtype=bool)
+sample_cores[dbscan.core_sample_indices_]=True
+#Calculating the number of clusters
+n_clusters=len(set(labels))- (1 if -1 in labels else 0)
+#Scatter plot for visualizing outliers
+import matplotlib.pyplot as plt
+plt.figure(figsize=(15, 10))
+plt.scatter(data.age,data.thalach,c=labels,s=75)
+plt.title("Outlier detection using Age and Max Heart Rate",fontsize=14)
+plt.xlabel("Age", fontsize=14)
+plt.ylabel("Max Heart Rate", fontsize=14)
+#Remove Outlier
+x=np.where(labels==-1)
+for i in list(x[0]):
+    data = data.drop(data.index[i])
+
+#split
+X = data.iloc[:, :-1].values
+y = data.iloc[:, -1].values
+print(y)
+print(X)
+#SMOTE-ENN
+from collections import Counter
+from imblearn.combine import SMOTEENN
+print('Original dataset shape %s' % Counter(y))
+resample = SMOTEENN(sampling_strategy="minority")
+X_res, y_res = resample.fit_resample(X, y)
+print('Resampled dataset shape %s' % Counter(y_res))
