@@ -7,9 +7,9 @@ class traintest:
     def __init__(self):
         print('''\t 'kf: if k-fold required (boolean, optional, default=True)' \n \t 'n: proportion to split data if kf=0 (float(0-1), optional, default=0.2)' \n \t 'k: folds for partition if kf=1 (integer, optional, default=10)' ''')
         self.kf=input('\t ENTER A VALUE (OPTIONAL: HIT ENTER TO SKIP) FOR kf: \t') or 'True'
-        self.n=input('\t ENTER A VALUE (OPTIONAL: HIT ENTER TO SKIP) FOR n: \t') or 0.2 
-        self.k=input('\t ENTER A VALUE (OPTIONAL: HIT ENTER TO SKIP) FOR k: \t') or 10
-
+        self.n=input('\t ENTER A VALUE (OPTIONAL: HIT ENTER TO SKIP) FOR n: \t') or 0.2; self.n=float(self.n) 
+        self.k=input('\t ENTER A VALUE (OPTIONAL: HIT ENTER TO SKIP) FOR k: \t') or 10; self.k=int(self.k) 
+        
         self.part_op=None
     
     def kfold(self, result):
